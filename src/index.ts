@@ -1,4 +1,3 @@
-
 /**
  * string
  * number - enteros y decimales
@@ -91,27 +90,27 @@ empleado3 = {
 }
 console.log(empleado3);
 
-console.log(tarea1.estado === 0 ? `La tarea ${tarea1.nombre} está pendiente` : `La tarea ${tarea1.nombre} está en proceso`);
+console.log(tarea1.estado === 0 ? `La tarea ${tarea1.nombre} esta pendiente` : `La tarea ${tarea1.nombre} esta en proceso`);
 
 // IF-ELSE
 if (tarea1.estado === 0) {
-    console.log(`La tarea ${tarea1.nombre} está pendiente`);
+    console.log(`La tarea ${tarea1.nombre} esta pendiente`);
 } else if (tarea1.estado === 1) {
-    console.log(`La tarea ${tarea1.nombre} está en proceso`);
+    console.log(`La tarea ${tarea1.nombre} esta en proceso`);
 } else {
-    console.log(`La tarea ${tarea1.nombre} está terminada`);
+    console.log(`La tarea ${tarea1.nombre} esta terminada`);
 }
 
 // SWITCH
 switch (tarea1.estado) {
     case 0:
-        console.log(`La tarea ${tarea1.nombre} está pendiente`);
+        console.log(`La tarea ${tarea1.nombre} esta pendiente`);
         break;
     case 1:
-        console.log(`La tarea ${tarea1.nombre} está en proceso`);
+        console.log(`La tarea ${tarea1.nombre} esta en proceso`);
         break;
     case 2:
-        console.log(`La tarea ${tarea1.nombre} está terminada`);
+        console.log(`La tarea ${tarea1.nombre} esta terminada`);
         break;
     default:
         console.log(`La tarea ${tarea1.nombre} no tiene estado`);
@@ -128,10 +127,10 @@ try {
 
 //Activity 2
 /**
- * Crea una función en tu proyecto que reciba como parámetro un string llamado "type" que tendrá como valor por defecto "SessionStorage",
- *  un string llamado "key", un array de objetos Tarea llamado "data" . El funcionamiento de dicha función debe ser el siguiente: 
- * dependiendo de si el valor del parámetro "type" es "session" o "local" se almacenará la información del array empleando el objeto "SessionStorage" o "LocalStorage". 
- * La información del parámetro data se almacenará usando la key pasada como parámetro
+ * Crea una funcion en tu proyecto que reciba como parametro un string llamado "type" que tendra como valor por defecto "SessionStorage",
+ *  un string llamado "key", un array de objetos Tarea llamado "data" . El funcionamiento de dicha funcion debe ser el siguiente: 
+ * dependiendo de si el valor del parametro "type" es "session" o "local" se almacenara la informacion del array empleando el objeto "SessionStorage" o "LocalStorage". 
+ * La informacion del parametro data se almacenara usando la key pasada como parametro
  * 
  * @param type Tipo de dato
  * @param key Clave
@@ -145,20 +144,20 @@ function activity2(type: string = "Session Storage", key: string, data: Tarea[])
     } else if (type == "local") {
         localStorage.setItem(key, JSON.stringify(data));
         console.log("Se guardaron los datos en Local Storage")
-    }
+    }
 
 }
 
 //Activity 3
 /**
- * Ejecuta la función anterior usando pasándole como parámetro el valor de type "session", un array de Tareas, y como clave "datos". Además, deberás ejecutar de nuevo la  función pasándole como parámetro el valor de type "local", un array de Tareas, y como clave "datos".
+ * Ejecuta la funcion anterior usando pasandole como parametro el valor de type "session", un array de Tareas, y como clave "datos". Ademas, deberas ejecutar de nuevo la  funcion pasandole como parametro el valor de type "local", un array de Tareas, y como clave "datos".
  */
 activity2("session", "datos", [tarea1]);
 activity2("local", "datos", [tarea1]);
 
 //Activity 4
 /**
- * Crea una función en tu proyecto que permita la recuperar la información almacenada en SessionStorage y LocalStorage. Dicha función debe recibir dos parámetros: type que será un string y tendrá como valor por defecto "session", y un string llamado "key". El funcionamiento de la función debe ser el siguiente: dependiendo el valor de type, si es "sessión" o "local", se recuperará la información empleando el objeto "SessionStorage" o "LocalStorage" y la key pasada como parámetro.
+ * Crea una funcion en tu proyecto que permita la recuperar la informacion almacenada en SessionStorage y LocalStorage. Dicha funcion debe recibir dos parametros: type que sera un string y tendra como valor por defecto "session", y un string llamado "key". El funcionamiento de la funcion debe ser el siguiente: dependiendo el valor de type, si es "session" o "local", se recuperara la informacion empleando el objeto "SessionStorage" o "LocalStorage" y la key pasada como parametro.
  */
 function activity4(type: string = "session", key: string) {
     if (type == "session") {
@@ -169,3 +168,59 @@ function activity4(type: string = "session", key: string) {
         console.log(data);
     }
 }
+
+//Activity 5
+/**
+ * Recupera la informacion almacenada en el navegador y muestrala por consola.
+ */
+activity4("session", "datos");
+activity4("local", "datos");
+
+//Activity 6
+/**
+ * Crea una funcion del mismo estilo que las anteriores que permita borrar la informacion almacenada en SessionStorage y LocalStorage. 
+ * Solo debe recibir como parametro un string llamado "type" y un string llamado "key". 
+ * Ejecuta dicha funcion tantas veces como sea necesaria para borrar toda la informacion almacenada.
+ */
+function activity6(type: string, key: string) {
+    if (type == "session") {
+        sessionStorage.removeItem(key);
+        console.log("Se elimino la informacion de Session Storage");
+    } else if (type == "local") {
+        localStorage.removeItem(key);
+        console.log("Se elimino la informacion de Local Storage");
+    }
+}
+
+//Activity 7
+/**
+ * Instala el modulo "js-cookie" tal y como se indica en el archivo index.ts del proyecto del profesor y emplea este modulo para almacenar, recuperar y borrar datos del navegador.
+Crea una cookie llamada nombre con tu nombre que expire a los 7 dias y sea accesible desde el path /
+Crea una cookie llamada apellidos con tu apellido que expire a los 2 dias
+Crea una cookie llamada email con un email que expire a los 4 dias.
+Recupera todas las cookies anteriores.
+Borra todas las cookies anteriores
+ */
+import Cookies from 'js-cookie';
+
+// Crear cookies
+Cookies.set('nombre', 'Dani', { expires: 7, path: '/' });
+Cookies.set('apellidos', 'Garcia', { expires: 2 });
+Cookies.set('email', 'dani@gmail.com', { expires: 4 });
+
+// Recuperar cookies
+let nombreCookie = Cookies.get('nombre');
+let apellidosCookie = Cookies.get('apellidos');
+let emailCookie = Cookies.get('email');
+console.log(nombreCookie, apellidosCookie, emailCookie);
+
+// Borrar cookies
+Cookies.remove('nombre');
+Cookies.remove('apellidos');
+Cookies.remove('email');
+
+// Intentar recuperar cookies despues de borrarlas
+nombreCookie = Cookies.get('nombre');
+apellidosCookie = Cookies.get('apellidos');
+emailCookie = Cookies.get('email');
+console.log(nombreCookie, apellidosCookie, emailCookie);
