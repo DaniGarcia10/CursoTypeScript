@@ -128,7 +128,10 @@ try {
 
 //Activity 2
 /**
- * Método que dependiendo del tipo pasado guarda los datos por parámetro en Session Storage o Local Storage
+ * Crea una función en tu proyecto que reciba como parámetro un string llamado "type" que tendrá como valor por defecto "SessionStorage",
+ *  un string llamado "key", un array de objetos Tarea llamado "data" . El funcionamiento de dicha función debe ser el siguiente: 
+ * dependiendo de si el valor del parámetro "type" es "session" o "local" se almacenará la información del array empleando el objeto "SessionStorage" o "LocalStorage". 
+ * La información del parámetro data se almacenará usando la key pasada como parámetro
  * 
  * @param type Tipo de dato
  * @param key Clave
@@ -166,58 +169,3 @@ function activity4(type: string = "session", key: string) {
         console.log(data);
     }
 }
-
-//Activity 5
-/**
- * Recupera la información almacenada en el navegador y muestrala por consola.
- */
-activity4("session", "datos");
-activity4("local", "datos");
-
-//Activity 6
-/**
- * Crea una función del mismo estilo que las anteriores que permita borrar la información almacenada en SessiónStorage y LocalStorage. Solo debe recibir como parámetro un string llamado "type" y un string llamado "key". Ejecuta dicha función tantas veces como sea necesaria para borrar toda la información almacenada.
- */
-function activity6(type: string, key: string) {
-    if (type == "session") {
-        sessionStorage.removeItem(key);
-    } else if (type == "local") {
-        localStorage.removeItem(key);
-    }
-}
-
-activity6("session", "datos");
-activity6("local", "datos");
-
-//Activity 7
-/**
- * Instala el módulo "js-cookie" tal y como se indica en el archivo index.ts del proyecto del profesor y emplea este módulo para almacenar, recuperar y borrar datos del navegador.
-Crea una cookie llamada nombre con tu nombre que expire a los 7 días y sea accesible desde el path /
-Crea una cookie llamada apellidos con tu apellido que expire a los 2 días
-Crea una cookie llamada email con un email que expire a los 4 días.
-Recupera todas las cookies anteriores.
-Borra todas las cookies anteriores
- */
-import Cookies from 'js-cookie';
-
-// Crear cookies
-Cookies.set('nombre', 'Dani', { expires: 7, path: '/' });
-Cookies.set('apellidos', 'Garcia', { expires: 2 });
-Cookies.set('email', 'dani@example.com', { expires: 4 });
-
-// Recuperar cookies
-let nombreCookie = Cookies.get('nombre');
-let apellidosCookie = Cookies.get('apellidos');
-let emailCookie = Cookies.get('email');
-console.log(nombreCookie, apellidosCookie, emailCookie);
-
-// Borrar cookies
-Cookies.remove('nombre');
-Cookies.remove('apellidos');
-Cookies.remove('email');
-
-// Intentar recuperar cookies después de borrarlas
-nombreCookie = Cookies.get('nombre');
-apellidosCookie = Cookies.get('apellidos');
-emailCookie = Cookies.get('email');
-console.log(nombreCookie, apellidosCookie, emailCookie);
